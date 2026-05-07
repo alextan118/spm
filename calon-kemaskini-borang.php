@@ -3,37 +3,50 @@ session_start();
 include('kawalan-admin.php');
 include('connection.php');
 
-//Dapatkan data calon
+// Dapatkan data calon
 $id_calon = $_GET['id_calon'];
 $result = mysqli_query($condb, "SELECT * FROM calon WHERE id_calon='$id_calon'");
 $calon = mysqli_fetch_assoc($result);
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Kemaskini Calon</title>
-</head>
-<body>
-    <h2>Kemaskini Calon</h2>
+<link rel="stylesheet" href="style_calon_kemaskini.css">
 
-    <form action="calon-kemaskini-proses.php" method="POST">
-        <input type="hidden" name="id_calon" value="<?= $calon['id_calon'] ?>">
+<div class="page-title">
+    KEMASKINI CALON
+</div>
 
-        Nama calon:
-        <input type="text" name="name_calon" value="<?= $calon['nama_calon'] ?>"
-               required><br><br>
+<div class="form-container">
 
-        Gambar Semasa:
+<form class="edit-form"
+      action="calon-kemaskini-proses.php"
+      method="POST">
+
+    <input type="hidden" name="id_calon" value="<?= $calon['id_calon'] ?>">
+
+    <label>Nama Calon</label>
+    <input type="text"
+           name="name_calon"
+           value="<?= $calon['nama_calon'] ?>"
+           required>
+
+    <label>Gambar Semasa</label>
+
+    <div class="image-box">
         <?php if (!empty($calon['gambar'])): ?>
-            <img src="<?= $calon['gambar'] ?>" alt="Gambar Calon" width="100"><br>
+            <img src="<?= $calon['gambar'] ?>" alt="Gambar Calon">
         <?php else: ?>
             <p>Tiada gambar</p>
         <?php endif; ?>
-        <br>
+    </div>
 
-        <input type="submit" value="Kemaskini">
-        <a href="calon-senarai.php">Batal</a>
-    </form>
-</body>
-</html>
+    <button type="submit" class="btn-save">
+        Kemaskini
+    </button>
+
+    <a class="btn-cancel" href="calon-senarai.php">
+        Batal
+    </a>
+
+</form>
+
+</div>

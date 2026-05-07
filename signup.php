@@ -1,56 +1,63 @@
 <?php
-
-# Mamanggil fail header.php
 include('header.php');
 include('connection.php');
-// Jika borang dihantar
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
     $nokp = $_POST['nokp'];
     $nama = $_POST['nama'];
     $katalaluan = $_POST['katalaluan'];
 
     $katalaluan_hash = password_hash($katalaluan, PASSWORD_DEFAULT);
 
-    // Semak jika No KP telah wujud
     $semak = $condb->query("SELECT * FROM PENGGUNA WHERE nokp='$nokp'");
+
     if ($semak->num_rows > 0) {
-        echo "<p style='color:red;'>No KP telah didaftarkan.</p>";
+        echo "<p class='error-msg'>No KP telah didaftarkan.</p>";
     } else {
         $sql = "INSERT INTO PENGGUNA (nokp, nama, katalaluan, tahap)
-        VALUES ('$nokp', '$nama', '$katalaluan', 'Pengguna')";
+                VALUES ('$nokp', '$nama', '$katalaluan', 'Pengguna')";
 
         if ($condb->query($sql) === TRUE) {
-            echo "<script>alert('Pendaftaran Berjaya. Sila Log Masuk');
-            window.location.href='login-borang.php'; </script>";
-
+            echo "<script>
+                    alert('Pendaftaran Berjaya. Sila Log Masuk');
+                    window.location.href='login-borang.php';
+                  </script>";
         } else {
-            echo "<p style='color:red;'>Ralat: " . $condb->error . "</p>";
+            echo "<p class='error-msg'>Ralat: " . $condb->error . "</p>";
         }
     }
 }
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Pendaftaran Pengguna</title>
-</head>
-<body>
-    <h2>Borang Daftar Pengguna</h2>
-    <form method="POST">
-        <label>No KP:</label><br>
-        <input type="text" name="nokp" placeholder="cth:12345" pattern="[0-9]{5}"
-            oninvalid="this.setCustomValidity('Sila masukkkan 5 digit nombor sahaja')"
-            oninput="this.setCustomValidity('')"required><br><br>
+<link rel="stylesheet" href="style_signup.css">
 
-        <label>Nama:</label><br>
-        <input type="text" name="nama" required><br><br>
+<div class="register-wrapper">
 
-        <label>Katalaluan:</label><br>
-        <input type="password" name="katalaluan" required><br><br>
+    <div class="register-card">
 
+        <h2 class="title">Pendaftaran Pengguna</h2>
 
-  <input type="submit" value="Daftar">
- </form>
-</body>
-</html>
+        <form method="POST">
+
+            <label>No KP</label>
+            <input class="input-box" type="text" name="nokp"
+                placeholder="Contoh: 12345"
+                pattern="[0-9]{5}"
+                required>
+
+            <label>Nama</label>
+            <input class="input-box" type="text" name="nama" required>
+
+            <label>Katalaluan</label>
+            <input class="input-box" type="password" name="katalaluan" required>
+
+            <input class="btn" type="submit" value="DAFTAR">
+
+        </form>
+
+    </div>
+
+</div>
+
+<?php include('footer.php'); ?>

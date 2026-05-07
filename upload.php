@@ -1,103 +1,105 @@
 <?php
-#memulakan fungsi session
 session_start();
 
-#memanggil fail header,kawalan-admin
 include('header.php');
 include('kawalan-admin.php');
 ?>
 
-<!--Tajuk laman-->
-<h3>Muat Naik Data Pengguna(*.txt)</h3>
+<link rel="stylesheet" href="style_upload.css">
 
-<!--Borang untuk memuat naik fail-->
-<form action=''
-    method='post'
-    enctype='multipart/form-data'>
-    <h3><b>Sila Pilih Fail txt yang ingin diupload</b></h3>
-    <input type='file'  name='data_admin'>
-    <button type='submit'  name='btn-upload'>Muat Naik</button>
+<div class="page-title">
+    MUAT NAIK DATA PENGGUNA (.TXT)
+</div>
+
+<div class="upload-container">
+
+<form class="upload-box"
+      action=''
+      method='post'
+      enctype='multipart/form-data'>
+
+    <h3>Pilih fail TXT untuk diupload</h3>
+
+    <input type='file' name='data_admin'>
+
+    <button type='submit' name='btn-upload'>
+        MUAT NAIK
+    </button>
+
 </form>
-<?php include("footer.php");?>
 
-<!--Bahagian Memproses Data yang dimuat naik-->
+</div>
+
+<?php include("footer.php"); ?>
+
 <?php
-#data validation:menyemak kewujudan data dari borang
 if(isset($_POST['btn-upload']))
 {
-    #memanggil fail connection
     include('connection.php');
 
-    #mengambil nama sementara fail
-    $namafailsementara=$_FILES["data_admin"]["tmp_name"];
+    $namafailsementara = $_FILES["data_admin"]["tmp_name"];
+    $namafail = $_FILES['data_admin']['name'];
+    $jenisfail = pathinfo($namafail, PATHINFO_EXTENSION);
 
-    #mengambil nama fail
-    $namafail=$_FILES['data_admin']['name'];
-
-    #mengambil jenis fail
-    $jenisfail=pathinfo($namafail,PATHINFO_EXTENSION);
-
-    #menguji jenis fail dan saiz fail
-    if($_FILES["data_admin"]["size"]>0 AND $jenisfail=="txt")
+    if($_FILES["data_admin"]["size"] > 0 && $jenisfail == "txt")
     {
-        #membuka fail yang diambil
-        $fail_data_admin=fopen($namafailsementara,"r");
-        $success=true;
-        $total_data=0;
-        $data_berjaya=0;
+        $fail = fopen($namafailsementara, "r");
 
-        #mendapatkan data dari fail baris demi baris
-        while(!feof($fail_data_admin))
+        $success = true;
+        $total_data = 0;
+        $data_berjaya = 0;
+
+        while(!feof($fail))
         {
-            #mengambil data segaris sahaja bagi setiap pusingan
-            $ambilbarisdata=trim(fgets($fail_data_admin));
+            $baris = trim(fgets($fail));
 
-            #pastikan ada cukup data
-            if(count($pecahkanbaris)<4){
-                $success=false;
+            if(empty($baris)) continue;
+
+            $pecahkanbaris = explode('|', $baris);
+
+            if(count($pecahkanbaris) < 4){
+                $success = false;
                 continue;
             }
 
-            #selepas pecahan tadi akan diumpukan kepada 4
-            list($nama,$nokp,$katalaluan,$tahap)=$pecahkanbaris;
+            list($nama,$nokp,$katalaluan,$tahap) = $pecahkanbaris;
 
-            #bersihkan data
-            $nama=trim($nama);
-            $nokp=trim($nokp);
-            $katalaluan=trim($katalaluan);
-            $tahap=trim($tahap);
+            $nama = trim($nama);
+            $nokp = trim($nokp);
+            $katalaluan = trim($katalaluan);
+            $tahap = trim($tahap);
 
-            #arahan SQL untuk menyimpan data
-            $arahan_sql_simpan="INSERT INTO pengguna
-            (nama,nokp,katalaluan,tahap)VALUES
-            ('$nama','$nokp','$katalaluan','$tahap')";
+            $sql = "INSERT INTO pengguna (nama,nokp,katalaluan,tahap)
+                    VALUES ('$nama','$nokp','$katalaluan','$tahap')";
 
-            #memasukkan data ke dalam jadual pengguna
-            $laksana_arahan_simpan=mysqli_query($condb,$arahan_sql_simpan);
+            $run = mysqli_query($condb, $sql);
 
-            if($laksana_arahan_simpan){
+            if($run){
                 $data_berjaya++;
             }else{
-                $success=false;
+                $success = false;
             }
-        }
-        #menutup fail txt yang dibuka
-        fclose($fail_data_admin);
 
-        if($success) {
-            echo"<script>alert('$total_data rekod berjaya diimport.');
-            window.location.href='pengguna-senarai.php';
+            $total_data++;
+        }
+
+        fclose($fail);
+
+        if($success){
+            echo "<script>
+                alert('$data_berjaya rekod berjaya diimport');
+                window.location.href='pengguna-senarai.php';
             </script>";
-        } else {
-            echo"<script>alert('Import gagal.Sila semak format fail.');
-            window.location.href='pengguna-senarai.php';
+        }else{
+            echo "<script>
+                alert('Sebahagian data gagal diimport');
+                window.location.href='pengguna-senarai.php';
             </script>";
         }
     }
     else
     {
-        #jika fail yang dimuat naik kosong atau tersalah format.
-        echo"<script>alert('Hanya fail berformat txt sahaja dibenarkan');</script>";
+        echo "<script>alert('Hanya fail .txt dibenarkan');</script>";
     }
 }
 ?>
