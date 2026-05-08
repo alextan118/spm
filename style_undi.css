@@ -1,119 +1,141 @@
 /* =========================
-   LION DANCE VOTING UI
+   FIRE GOLD VOTING UI (FULL)
 ========================= */
 
 body{
     margin: 0;
     font-family: "Segoe UI", sans-serif;
-    background: linear-gradient(135deg, #7f1d1d, #b91c1c, #f59e0b);
-    color: white;
+
+    background: radial-gradient(circle at top, #1a0a0a, #000000 60%, #000000);
+
+    color: #f8fafc;
 }
 
 /* ===== TITLE ===== */
-.page-title{
+h2{
     text-align: center;
-    font-size: 22px;
-    font-weight: bold;
     color: #fbbf24;
-    margin: 20px;
-    text-shadow: 2px 2px 10px rgba(0,0,0,0.6);
+
+    margin-top: 20px;
+
+    text-shadow: 0 0 10px rgba(251,191,36,0.35),
+                 0 0 20px rgba(249,115,22,0.2);
 }
 
-/* ===== CONTAINER ===== */
-.undi-container{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    padding: 10px;
-}
-
-/* ===== CALON CARD ===== */
-.calon-card{
-    width: 250px;
-    background: rgba(0,0,0,0.45);
-    border: 1px solid rgba(251,191,36,0.4);
-    border-radius: 15px;
-    padding: 15px;
+/* ===== FORM LAYOUT ===== */
+form{
+    padding: 20px;
     text-align: center;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+/* ===== EACH CARD ===== */
+form > div{
+    width: 260px;
+
+    display: inline-block;
+
+    margin: 15px;
+
+    padding: 15px;
+
+    text-align: center;
+
+    background: rgba(0,0,0,0.55);
+
+    border: 1px solid rgba(251,191,36,0.18);
+
+    border-radius: 15px;
+
+    backdrop-filter: blur(14px);
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.7);
+
     transition: 0.3s;
 }
 
-.calon-card:hover{
+form > div:hover{
     transform: translateY(-5px);
+
+    box-shadow: 0 0 20px rgba(251,191,36,0.2),
+                0 15px 35px rgba(0,0,0,0.8);
 }
 
 /* ===== IMAGE ===== */
-.calon-img{
+form img{
     width: 120px;
     height: 150px;
     object-fit: cover;
+
     border-radius: 10px;
+
     border: 2px solid #fbbf24;
+
+    box-shadow: 0 0 10px rgba(251,191,36,0.25);
 }
 
 /* ===== NAME ===== */
-.calon-name{
-    margin-top: 10px;
-    font-weight: bold;
+form p{
     color: #fde68a;
+    font-weight: bold;
+
+    margin: 10px 0;
 }
 
-/* ===== JAWATAN BUTTON ===== */
-.jawatan-list{
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
+/* ===== LABEL ===== */
+label{
+    display: block;
+    margin: 5px 0;
 
-.jawatan-btn{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    background: rgba(251,191,36,0.15);
-    border: 1px solid rgba(251,191,36,0.4);
-    padding: 8px;
-    border-radius: 10px;
+    color: #e5e7eb;
+
     cursor: pointer;
-    transition: 0.3s;
 }
 
-.jawatan-btn:hover{
-    background: #fbbf24;
-    color: #7f1d1d;
-}
+/* ===== CHECKBOX ===== */
+input[type="checkbox"]{
+    accent-color: #fbbf24;
 
-/* checkbox hide style */
-.jawatan-btn input{
     transform: scale(1.2);
 }
 
-/* ===== SUBMIT BUTTON ===== */
-.submit-btn{
+/* ===== SUBMIT ===== */
+input[type="submit"]{
     display: block;
+
     margin: 30px auto;
+
     padding: 12px 25px;
+
     border: none;
+
     border-radius: 12px;
-    background: linear-gradient(45deg, #fbbf24, #f59e0b);
-    color: #7f1d1d;
+
+    background: linear-gradient(135deg, #fbbf24, #f97316);
+
+    color: #000;
+
     font-weight: bold;
+
     cursor: pointer;
+
     transition: 0.3s;
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.7),
+                0 0 20px rgba(251,191,36,0.2);
 }
 
-.submit-btn:hover{
+input[type="submit"]:hover{
     transform: scale(1.05);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+
+    box-shadow: 0 15px 30px rgba(0,0,0,0.8),
+                0 0 30px rgba(251,191,36,0.35);
 }
 
 /* ===== MOBILE ===== */
 @media (max-width: 600px){
-    .calon-card{
+    form > div{
         width: 90%;
+        display: block;
+        margin: 15px auto;
     }
 }

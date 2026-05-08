@@ -1,22 +1,34 @@
 
 /* =========================
-   LION DANCE JAWATAN SYSTEM
+   FIRE GOLD LION DANCE SYSTEM (RETURN STYLE)
 ========================= */
 
 body{
     margin: 0;
     font-family: "Segoe UI", sans-serif;
-    background: linear-gradient(135deg, #7f1d1d, #b91c1c, #f59e0b);
+
+    /* 🔥 回归烈焰红金 */
+    background:
+        radial-gradient(circle at top, #3b0a0a, #000000 60%),
+        linear-gradient(135deg, #7f1d1d, #b91c1c, #f59e0b);
+
+    color: #f8fafc;
 }
 
 /* ===== TITLE ===== */
 .page-title{
     text-align: center;
+
     color: #fbbf24;
-    font-size: 24px;
+
+    font-size: 26px;
     font-weight: bold;
-    margin: 20px;
-    text-shadow: 2px 2px 10px rgba(0,0,0,0.6);
+
+    margin: 25px;
+
+    text-shadow:
+        0 0 10px rgba(251,191,36,0.35),
+        0 0 20px rgba(249,115,22,0.2);
 }
 
 /* ===== FORM CONTAINER ===== */
@@ -25,97 +37,160 @@ body{
     justify-content: center;
 }
 
-/* ===== FORM BOX ===== */
+/* ===== FORM BOX (GLASS FIRE GOLD) ===== */
 .form-box{
-    width: 350px;
-    background: rgba(0,0,0,0.5);
-    backdrop-filter: blur(12px);
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    width: 380px;
+
+    background: rgba(0,0,0,0.55);
+
+    backdrop-filter: blur(16px);
+
+    padding: 22px;
+
+    border-radius: 16px;
+
+    border: 1px solid rgba(251,191,36,0.25);
+
+    box-shadow:
+        0 20px 45px rgba(0,0,0,0.7),
+        0 0 25px rgba(251,191,36,0.08);
+
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    color: white;
+    gap: 12px;
 }
 
 /* ===== INPUT ===== */
 .form-box input{
-    padding: 8px;
-    border-radius: 8px;
-    border: 1px solid #fbbf24;
-    background: rgba(255,255,255,0.1);
-    color: white;
+    padding: 10px;
+
+    border-radius: 10px;
+
+    border: 1px solid rgba(251,191,36,0.35);
+
+    background: rgba(255,255,255,0.05);
+
+    color: #f8fafc;
+
+    outline: none;
+
+    transition: 0.25s;
+}
+
+.form-box input:focus{
+    border-color: #fbbf24;
+
+    box-shadow: 0 0 15px rgba(251,191,36,0.25);
 }
 
 /* ===== BUTTON ===== */
 .form-box button{
-    padding: 10px;
-    background: #fbbf24;
+    padding: 11px;
+
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+
     color: #7f1d1d;
+
     border: none;
-    border-radius: 8px;
+
+    border-radius: 10px;
+
     font-weight: bold;
+
     cursor: pointer;
+
     transition: 0.3s;
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.6);
 }
 
 .form-box button:hover{
-    background: #fde68a;
-    transform: scale(1.05);
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 15px 30px rgba(0,0,0,0.8),
+        0 0 25px rgba(251,191,36,0.25);
 }
 
 /* ===== TABLE TITLE ===== */
 .table-title{
     text-align: center;
-    margin: 20px;
+
+    margin: 25px;
+
     color: #fbbf24;
+
     font-weight: bold;
 }
 
 /* ===== TABLE ===== */
 .jawatan-table{
-    width: 80%;
+    width: 85%;
     margin: auto;
+
     border-collapse: collapse;
-    background: rgba(0,0,0,0.45);
-    backdrop-filter: blur(12px);
-    border-radius: 12px;
+
+    background: rgba(0,0,0,0.5);
+
+    backdrop-filter: blur(14px);
+
+    border-radius: 14px;
+
     overflow: hidden;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+
+    box-shadow:
+        0 20px 40px rgba(0,0,0,0.7),
+        0 0 20px rgba(251,191,36,0.08);
+
+    border: 1px solid rgba(251,191,36,0.15);
 }
 
 /* ===== HEADER ===== */
 .header-row{
     background: linear-gradient(45deg, #fbbf24, #f59e0b);
+
     color: #7f1d1d;
+
+    font-weight: bold;
 }
 
 /* ===== ROW ===== */
 .data-row{
     text-align: center;
-    color: white;
-    transition: 0.3s;
+
+    color: #f8fafc;
+
+    transition: 0.25s;
 }
 
 .data-row:hover{
-    background: rgba(251,191,36,0.15);
+    background: rgba(251,191,36,0.12);
 }
 
 /* ===== LINKS ===== */
 .edit-btn{
     color: #fbbf24;
+
     font-weight: bold;
+
     text-decoration: none;
+
+    transition: 0.2s;
 }
 
 .delete-btn{
     color: #f87171;
+
     font-weight: bold;
+
     text-decoration: none;
+
+    transition: 0.2s;
 }
 
 .edit-btn:hover,
 .delete-btn:hover{
-    color: white;
+    color: #ffffff;
+
+    text-shadow: 0 0 10px rgba(255,255,255,0.2);
 }

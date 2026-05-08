@@ -34,7 +34,83 @@ if (!isset($condb)) {
 <tr class="action-bar">
     <td colspan="5">
         <a class="link-btn" href="upload.php">Muat Naik Pengguna</a>
-        <?php include('butang-saiz.php'); ?>
+
+        <!-- ================= FONT TOOL ================= -->
+        <style>
+        .size-tool {
+            display: inline-block;
+            margin-left: 10px;
+        }
+
+        .size-tool button {
+            padding: 6px 12px;
+            margin: 0 3px;
+
+            border: none;
+            border-radius: 8px;
+
+            cursor: pointer;
+
+            background: linear-gradient(135deg, #fbbf24, #f97316);
+            color: #000;
+
+            font-weight: bold;
+
+            transition: 0.2s;
+        }
+
+        .size-tool button:hover {
+            transform: translateY(-2px);
+        }
+        </style>
+
+        <script>
+        /* =========================
+           TABLE FONT CONTROL (SAFE)
+        ========================= */
+
+        function ubahsaiz(type){
+
+            let table = document.querySelector(".user-table");
+
+            if(!table){
+                alert("Table tidak dijumpai");
+                return;
+            }
+
+            let current = window.getComputedStyle(table).fontSize;
+            let size = parseFloat(current);
+
+            // RESET
+            if(type === "reset"){
+                table.style.fontSize = "14px";
+                return;
+            }
+
+            // PLUS
+            if(type === "plus"){
+                table.style.fontSize = (size + 1) + "px";
+            }
+
+            // MINUS
+            if(type === "minus"){
+                table.style.fontSize = (size - 1) + "px";
+            }
+        }
+        </script>
+
+        <div class="size-tool">
+            | ubah saiz table |
+
+            <button type="button" onclick="ubahsaiz('reset')">reset</button>
+            <button type="button" onclick="ubahsaiz('plus')">+</button>
+            <button type="button" onclick="ubahsaiz('minus')">-</button>
+
+            |
+
+            <button type="button" onclick="window.print()">Cetak</button>
+        </div>
+
     </td>
 </tr>
 
@@ -75,6 +151,7 @@ while ($m = mysqli_fetch_array($laksana)) {
 ?>
 
 </table>
+
 </div>
 
 <?php include('footer.php'); ?>

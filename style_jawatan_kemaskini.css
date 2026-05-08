@@ -1,22 +1,34 @@
 
 /* =========================
-   LION DANCE EDIT JAWATAN UI
+   FIRE GOLD EDIT JAWATAN UI
 ========================= */
 
 body{
     margin: 0;
     font-family: "Segoe UI", sans-serif;
-    background: linear-gradient(135deg, #7f1d1d, #b91c1c, #f59e0b);
+
+    /* 🔥 烈焰黑金回归 */
+    background:
+        radial-gradient(circle at top, #3b0a0a, #000000 60%),
+        linear-gradient(135deg, #7f1d1d, #b91c1c, #f59e0b);
+
+    color: #f8fafc;
 }
 
 /* ===== TITLE ===== */
 .page-title{
     text-align: center;
+
     color: #fbbf24;
-    font-size: 24px;
+
+    font-size: 26px;
     font-weight: bold;
-    margin: 20px;
-    text-shadow: 2px 2px 10px rgba(0,0,0,0.6);
+
+    margin: 25px;
+
+    text-shadow:
+        0 0 10px rgba(251,191,36,0.35),
+        0 0 20px rgba(249,115,22,0.2);
 }
 
 /* ===== CENTER ===== */
@@ -25,18 +37,27 @@ body{
     justify-content: center;
 }
 
-/* ===== FORM CARD ===== */
+/* ===== FORM CARD (GLASS UPGRADED) ===== */
 .edit-form{
     width: 380px;
-    background: rgba(0,0,0,0.5);
-    backdrop-filter: blur(12px);
+
+    background: rgba(0,0,0,0.55);
+
+    backdrop-filter: blur(16px);
+
     padding: 25px;
-    border-radius: 15px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+
+    border-radius: 16px;
+
+    border: 1px solid rgba(251,191,36,0.2);
+
+    box-shadow:
+        0 20px 45px rgba(0,0,0,0.7),
+        0 0 25px rgba(251,191,36,0.08);
+
     display: flex;
     flex-direction: column;
     gap: 12px;
-    color: white;
 }
 
 /* ===== LABEL ===== */
@@ -47,50 +68,93 @@ body{
 
 /* ===== INPUT ===== */
 .edit-form input{
-    padding: 8px;
-    border-radius: 8px;
-    border: 1px solid #fbbf24;
-    background: rgba(255,255,255,0.1);
-    color: white;
+    padding: 10px;
+
+    border-radius: 10px;
+
+    border: 1px solid rgba(251,191,36,0.3);
+
+    background: rgba(255,255,255,0.05);
+
+    color: #f8fafc;
+
     outline: none;
+
+    transition: 0.25s;
+}
+
+.edit-form input:focus{
+    border-color: #fbbf24;
+
+    box-shadow: 0 0 15px rgba(251,191,36,0.25);
 }
 
 /* ===== BUTTON GROUP ===== */
 .btn-group{
     display: flex;
     justify-content: space-between;
+
     margin-top: 10px;
+
+    gap: 10px;
 }
 
 /* ===== SAVE BUTTON ===== */
 .btn-save{
+    flex: 1;
+
     padding: 10px 15px;
-    background: #fbbf24;
+
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+
     color: #7f1d1d;
+
     border: none;
-    border-radius: 8px;
+
+    border-radius: 10px;
+
     font-weight: bold;
+
     cursor: pointer;
+
     transition: 0.3s;
+
+    box-shadow: 0 10px 20px rgba(0,0,0,0.6);
 }
 
 .btn-save:hover{
-    background: #fde68a;
-    transform: scale(1.05);
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 15px 30px rgba(0,0,0,0.8),
+        0 0 25px rgba(251,191,36,0.2);
 }
 
 /* ===== CANCEL BUTTON ===== */
 .btn-cancel{
+    flex: 1;
+
     padding: 10px 15px;
-    border: 1px solid #fbbf24;
+
+    border: 1px solid rgba(251,191,36,0.5);
+
     color: #fbbf24;
+
     text-decoration: none;
-    border-radius: 8px;
+
+    border-radius: 10px;
+
     text-align: center;
+
     transition: 0.3s;
+
+    background: rgba(255,255,255,0.03);
 }
 
 .btn-cancel:hover{
     background: #fbbf24;
+
     color: #7f1d1d;
+
+    box-shadow: 0 0 20px rgba(251,191,36,0.25);
 }
